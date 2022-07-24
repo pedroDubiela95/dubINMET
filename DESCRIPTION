@@ -1,0 +1,15 @@
+Package: dubINMET
+Title: Analyse of INMET (Brazil) data
+Version: 0.0.1
+Authors@R: 
+    person("Pedro", "Dubiela", , "pedrodubielabio@gmail.com", role = c("aut", "cre"))
+Description: Mathematical optimization.
+License: MIT + file LICENSE
+Depends:
+    R (>= 4.2.0)
+Imports:
+    magrittr (>= 2.0.3),
+    data.table (>= 1.14.2)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.1

@@ -1,0 +1,63 @@
+
+body {
+  font-family: Arial, helvetica, sans-serif;
+  background-color: rgb(220,220,220);
+  text-align: justify;
+}
+
+pre, pre:not([class]) {
+  color: (220,220,220);
+  /*font-size: 127%;*/
+  font-weight: Medium;
+  background-color: black;
+  text-align: justify;
+
+}
+
+
+h1 {
+  color: rgb(0,0,0);
+  font-size: 127%;
+  font-weight: bold;
+  text-align: justify;
+}
+
+.title {
+  margin-right: 200px;
+}
+
+h2 {
+  color: rgb(0,0,0);
+  font-size: 121%;
+  font-weight: bold;
+  text-align: justify;
+}
+
+h3 {
+  font-size: 109%;
+  font-weight: bold;
+  text-align: justify;
+}
+
+h4 {
+  font-size: 100%;
+  font-weight: bold;
+  text-align: justify;
+  /*font-style: italic;*/
+}
+
+/*cor do hyperlink*/
+a{
+  color:rgb(25,25,112);
+  text-decoration: none;
+}
+
+/*paragrafo*/
+p {
+  margin: 0;
+  text-indent: 3ch;
+}
+
+
+
+

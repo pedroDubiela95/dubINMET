@@ -9,13 +9,17 @@
 #' @param path \[\code{character}\]\cr
 #' path where are the files
 #'
-#' @example
-#' save_path <- files_by_year("/home/pedrodev/Documents/Base De Dados/INMET")
+#' @examples
+#'  \dontrun{
+#'  save_path <- files_by_year("/home/pedrodev/Documents/Base De Dados/INMET")
+#' }
 #'
 #' @export
 files_by_year <- function(path) {
 
-  .         <- NULL
+  #Global variables
+  . <- Regiao <- Estado <- Cidade <- NULL
+
   ano       <- list.files(path)
   dir       <- paste0(path, "/", ano)
   dt_res    <- data.table::data.table()

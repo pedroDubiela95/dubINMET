@@ -2,16 +2,24 @@
 % Please edit documentation in R/main_functions.R
 \name{files_by_year}
 \alias{files_by_year}
-\title{It creates csv by year}
+\title{It creates csv by year, and it creates the columns
+Region, State and City.}
 \usage{
 files_by_year(path)
 }
 \arguments{
 \item{path}{[\code{character}]\cr
-path where the files are}
+path where are the files}
 }
 \description{
 It aggregates and creates csv files by years.
 It will save the results in folder results. This folder results
-always will be created, if already exists, it will be deleted and after will be created
+always will be created, if it already exists, it will be
+deleted and after will be created again
+}
+\examples{
+ \dontrun{
+ save_path <- files_by_year("/home/pedrodev/Documents/Base De Dados/INMET")
+}
+
 }

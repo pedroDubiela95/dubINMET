@@ -39,7 +39,7 @@ knitr::opts_chunk$set(echo = FALSE, cache = FALSE, eval = TRUE, message=FALSE, w
 <p>A análise será feita em nível nacional e a medida que a anaĺise for avançando, um pacote em R será desenvolvido para tornar o processo automatizado e reprodutível para os demais interessados, o pacote em questão será denomiando dubINMET.</p>
  
  ``` 
-Este relatório encontra-se em faze de construção.
+Este relatório encontra-se em fase de construção.
 
 ```
  

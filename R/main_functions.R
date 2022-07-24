@@ -1,5 +1,6 @@
 #' @title It creates csv by year, and it creates the columns
-#' Region, State and City.
+#' Region, State and City. This function must be used when the data
+#' are downloaded from https://portal.inmet.gov.br/dadoshistoricos.
 #'
 #' @description It aggregates and creates csv files by years.
 #' It will save the results in folder results. This folder results
@@ -41,6 +42,7 @@ files_by_year <- function(path) {
 
     #Taking all files in each year
     for (j in seq(length(files))) {
+      dt_res <- data.table::fread(files[j], skip = 9, data.table = T)
       dt_res <- data.table::fread(files[j], sep = ";", header = T, skip = 8) %>%
         .[, Regiao:=infos[[j]][2]] %>%
         .[, Estado:=infos[[j]][3]] %>%

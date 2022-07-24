@@ -3,7 +3,8 @@
 \name{files_by_year}
 \alias{files_by_year}
 \title{It creates csv by year, and it creates the columns
-Region, State and City.}
+Region, State and City. This function must be used when the data
+are downloaded from https://portal.inmet.gov.br/dadoshistoricos.}
 \usage{
 files_by_year(path)
 }

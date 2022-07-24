@@ -1,6 +1,6 @@
 ---
 title: "Análise dos Dados do Instituto Nacional de Meteorologia - INMET (2018-2022)"
-author: "Pedro Gasparine Dubiela (pedro.dubielabio@gmail.com)"
+author: "Pedro Gasparine Dubiela (pedrodubielabio@gmail.com)"
 date: "21/07/2022"
 output:
   html_document:
@@ -36,7 +36,7 @@ knitr::opts_chunk$set(echo = FALSE, cache = FALSE, eval = TRUE, message=FALSE, w
 
 # 1. Introdução:
 <p>Este relatório tem como objetivo analisar os dados meteorológicos fornecidos pelo Instituto Nacional de Meteorologia - INMET no período de 2018 até 2022.</p> 
-<p>A análise será feita em nível nacional e a medida que a anaĺise for avançando, um pacote em R será desenvolvido para tornar o processo automatizado e reprodutível para os demais interessados, o pacote em questão será denomiando dubINMET.</p>
+<p>A análise será feita inicialmente para a cidade de Maringá - PR, e a medida em que for avançando, um pacote em R será desenvolvido para tornar o processo automatizado e reprodutível para os demais interessados, o pacote em questão será denomiando dubINMET.</p>
  
  ``` 
 Este relatório encontra-se em fase de construção.
@@ -44,34 +44,27 @@ Este relatório encontra-se em fase de construção.
 ```
  
 # 2. Obtenção dos Dados:
-- Foram baixados do site do INMET https://portal.inmet.gov.br/dadoshistoricos em 23/07/2022 às 8:00 as bases referentes
-aos anos de 2018 até  2022, cuja abertura geográfica está em  nível nacional.
-- Os arquivos vieram compactados em 5 pastas, cada uma referente ao ano em questão. 
-- Dentro de cada pasta(ano) tem-se arquivos .csv, onde cada arquivo é referente a uma cidade(estação).
-```{r}
-#path      <-"/home/pedrodev/Documents/Base De Dados/INMET"
-#save_path <- files_by_year(path)
-```
+- Foram baixados do site do INMET https://portal.inmet.gov.br/dadoshistoricos em 24/07/2022 às 12:00 as bases referentes
+aos anos de 2021 e 2022.
+- Dentro de cada pasta(ano) tem-se arquivos .csv.
+- Os arquivos csv's são divididos por semestres.
 
-Após baixados, os dados foram agrupados de tal forma a ter-se somente um arquivos .csv para cada ano. Devido ao elevado
-custo computacional para carregar em memória todos os anos de uma única vez, faz-se necessário carregar uma base por vez, afim de se fazer uma análise exploratória inicial.
-
-# 2. Analise Exploratória
+# 3. Analise Exploratória
 
 ## Ano de 2022:
+
+### Carregamento das Bases de Dados:
+<p>
+Para o ano de 2022, tem-se disponível somente o primeiro semestre.
+</p>
 ```{r}
-# save_path <- "/home/pedrodev/Documents/Base De Dados/results"
-# years  <- c(2022) %>% as.character()
-# load   <- file.path(save_path, paste0(years,".csv"))
-# dt2022 <- data.table::fread(file = load[1])
+path   <- "/home/pedrodev/Documents/Base De Dados/INMET/2022/MARINGA (A835)_2022-01-01_2022-07-24.csv"
+dt2022 <- data.table::fread(file = path)
 # gc()
 ```
 ## Ano de 2021:
 ```{r}
-# years  <- c(2021) %>% as.character()
-# load   <- file.path(save_path, paste0(years,".csv"))
-# dt2021 <- data.table::fread(file = load[1])
-# gc()
+
 ```
 
 ## Ano de 2020:

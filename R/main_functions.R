@@ -1,4 +1,5 @@
-#' @title It creates csv by year
+#' @title It creates csv by year, and it creates the columns
+#' Region, State and City.
 #'
 #' @description It aggregates and creates csv files by years.
 #' It will save the results in folder results. This folder results
@@ -26,12 +27,18 @@ files_by_year <- function(path) {
   for (i in seq(length(dir))) {
 
     #Files by year
-    files  <- paste0(dir[i],"/",list.files(dir[i]))
+    f      <- list.files(dir[i])
+    files  <- paste0(dir[i],"/",f)
     dt_res <- data.table::data.table()
+    infos  <- stringr::str_split(f, pattern = "_")
 
     #Taking all files in each year
-    for (file in files) {
-      dt_res <- data.table::fread(file, sep = ";", header = T, skip = 8) %>% rbind(dt_res, .)
+    for (j in seq(length(files))) {
+      dt_res <- data.table::fread(files[j], sep = ";", header = T, skip = 8) %>%
+        .[, Regiao:=infos[[j]][2]] %>%
+        .[, Estado:=infos[[j]][3]] %>%
+        .[, Cidade:=infos[[j]][5]] %>%
+        rbind(dt_res, .)
       gc()
     }
 

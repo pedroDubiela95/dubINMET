@@ -12,7 +12,7 @@
 <meta name="author" content="Pedro Gasparine Dubiela (pedro.dubielabio@gmail.com)" />
 
 
-<title>Análise dos Dados do Instituto Nacional de Meteorologia - INMET (2017 até 2022)</title>
+<title>Análise dos Dados do Instituto Nacional de Meteorologia - INMET (2018-2022)</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1360,6 +1360,7 @@ a{
 color:rgb(25,25,112);
 text-decoration: none;
 }
+
 p {
 margin: 0;
 text-indent: 3ch;
@@ -1554,73 +1555,62 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Análise dos Dados do Instituto Nacional de
-Meteorologia - INMET (2017 até 2022)</h1>
+Meteorologia - INMET (2018-2022)</h1>
 <h4 class="author">Pedro Gasparine Dubiela (<a href="mailto:pedro.dubielabio@gmail.com" class="email">pedro.dubielabio@gmail.com</a>)</h4>
 <h4 class="date">21/07/2022</h4>
 
 </div>
 
 
+<div id="introdução" class="section level1">
+<h1>1. Introdução:</h1>
+<p>
+Este relatório tem como objetivo analisar os dados meteorológicos
+fornecidos pelo Instituto Nacional de Meteorologia - INMET no período de
+2018 até 2022.
+</p>
+<p>
+A análise será feita em nível nacional e a medida que a anaĺise for
+avançando, um pacote em R será desenvolvido para tornar o processo
+automatizado e reprodutível para os demais interessados, o pacote em
+questão será denomiando dubINMET.
+</p>
+<pre><code>Este relatório encontra-se em faze de construção.
+</code></pre>
+</div>
 <div id="obtenção-dos-dados" class="section level1">
-<h1>1. Obtenção dos Dados:</h1>
+<h1>2. Obtenção dos Dados:</h1>
 <ul>
 <li>Foram baixados do site do INMET <a href="https://portal.inmet.gov.br/dadoshistoricos" class="uri">https://portal.inmet.gov.br/dadoshistoricos</a> em
-23/07/2022 às 8:00 as bases referentes aos anos de 2000 até 2022, cuja
-abertura geográfica é a nível nacional.</li>
-<li>Os arquivos vieram compactados em 6 pastas, cada uma referente ao
+23/07/2022 às 8:00 as bases referentes aos anos de 2018 até 2022, cuja
+abertura geográfica está em nível nacional.</li>
+<li>Os arquivos vieram compactados em 5 pastas, cada uma referente ao
 ano em questão.</li>
 <li>Dentro de cada pasta(ano) tem-se arquivos .csv, onde cada arquivo é
 referente a uma cidade(estação).</li>
 </ul>
-<p>Após baixados, os dados foram agrupados, de tal forma a ter-se
-somente um arquivos .csv para cada ano. Devido ao elevado custo
-computacional para carregar em memória todos os anos de uma única vez,
-fez-se necessário carregar uma base por vez para fazer uma análise
+<p>Após baixados, os dados foram agrupados de tal forma a ter-se somente
+um arquivos .csv para cada ano. Devido ao elevado custo computacional
+para carregar em memória todos os anos de uma única vez, faz-se
+necessário carregar uma base por vez, afim de se fazer uma análise
 exploratória inicial.</p>
 </div>
 <div id="analise-exploratória" class="section level1">
 <h1>2. Analise Exploratória</h1>
-<div id="ano-de-2017" class="section level2">
-<h2>Ano de 2017:</h2>
-<pre><code>##           used (Mb) gc trigger (Mb) max used (Mb)
-## Ncells  773776 41.4    1477522   79  1197935 64.0
-## Vcells 1391047 10.7    8388608   64  2180826 16.7</code></pre>
-<p>Corrgir o nome das colunas:</p>
-<pre><code>##  [1] &quot;DATA (YYYY-MM-DD)&quot;                               
-##  [2] &quot;HORA (UTC)&quot;                                      
-##  [3] &quot;PRECIPITACAO TOTAL&quot;                              
-##  [4] &quot; HORARIO (mm)&quot;                                   
-##  [5] &quot;PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO&quot;         
-##  [6] &quot; HORARIA (mB)&quot;                                   
-##  [7] &quot;PRESSAO ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)&quot; 
-##  [8] &quot;PRESSAO ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)&quot;
-##  [9] &quot;RADIACAO GLOBAL (KJ/m�)&quot;                         
-## [10] &quot;TEMPERATURA DO AR - BULBO SECO&quot;                  
-## [11] &quot; HORARIA (�C)&quot;                                   
-## [12] &quot;TEMPERATURA DO PONTO DE ORVALHO (�C)&quot;            
-## [13] &quot;TEMPERATURA M�XIMA NA HORA ANT. (AUT) (�C)&quot;      
-## [14] &quot;TEMPERATURA M�NIMA NA HORA ANT. (AUT) (�C)&quot;      
-## [15] &quot;TEMPERATURA ORVALHO MAX. NA HORA ANT. (AUT) (�C)&quot;
-## [16] &quot;TEMPERATURA ORVALHO MIN. NA HORA ANT. (AUT) (�C)&quot;
-## [17] &quot;UMIDADE REL. MAX. NA HORA ANT. (AUT) (%)&quot;        
-## [18] &quot;UMIDADE REL. MIN. NA HORA ANT. (AUT) (%)&quot;        
-## [19] &quot;UMIDADE RELATIVA DO AR&quot;                          
-## [20] &quot; HORARIA (%)&quot;                                    
-## [21] &quot;VENTO&quot;                                           
-## [22] &quot; DIRE��O HORARIA (gr) (� (gr))&quot;                  
-## [23] &quot;VENTO&quot;                                           
-## [24] &quot; RAJADA MAXIMA (m/s)&quot;                            
-## [25] &quot;VENTO&quot;                                           
-## [26] &quot; VELOCIDADE HORARIA (m/s)&quot;</code></pre>
+<div id="ano-de-2022" class="section level2">
+<h2>Ano de 2022:</h2>
 </div>
-<div id="ano-de-2018" class="section level2">
-<h2>Ano de 2018:</h2>
+<div id="ano-de-2021" class="section level2">
+<h2>Ano de 2021:</h2>
+</div>
+<div id="ano-de-2020" class="section level2">
+<h2>Ano de 2020:</h2>
 </div>
 <div id="ano-de-2019" class="section level2">
 <h2>Ano de 2019:</h2>
-<p>Um teste</p>
-<pre><code>Como fica dentro do esquadro
-</code></pre>
+</div>
+<div id="ano-de-2018" class="section level2">
+<h2>Ano de 2018:</h2>
 </div>
 </div>
 

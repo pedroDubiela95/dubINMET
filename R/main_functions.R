@@ -7,7 +7,10 @@
 #' deleted and after will be created again
 #'
 #' @param path \[\code{character}\]\cr
-#' path where the files are
+#' path where are the files
+#'
+#' @example
+#' save_path <- files_by_year("/home/pedrodev/Documents/Base De Dados/INMET")
 #'
 #' @export
 files_by_year <- function(path) {

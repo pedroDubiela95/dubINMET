@@ -3,5 +3,6 @@
 export("%>%")
 export(":=")
 export(files_by_year)
+export(preprocessing)
 importFrom(data.table,":=")
 importFrom(magrittr,"%>%")

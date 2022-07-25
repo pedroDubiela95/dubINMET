@@ -18,7 +18,7 @@
 #' @export
 files_by_year <- function(path) {
 
-  #Global variables
+  # Global variables
   . <- Regiao <- Estado <- Cidade <- NULL
 
   ano       <- list.files(path)
@@ -26,21 +26,21 @@ files_by_year <- function(path) {
   dt_res    <- data.table::data.table()
   save_path <- file.path(path, "../results")
 
-  #if save directory already exists, so it will be deleted
+  # if save directory already exists, so it will be deleted
   if(dir.exists(save_path)) {unlink(x = save_path, recursive = T, force = T)}
 
-  #Crating new save directory
+  # Crating new save directory
   dir.create(path = save_path)
 
   for (i in seq(length(dir))) {
 
-    #Files by year
+    # Files by year
     f      <- list.files(dir[i])
     files  <- paste0(dir[i],"/",f)
     dt_res <- data.table::data.table()
     infos  <- stringr::str_split(f, pattern = "_")
 
-    #Taking all files in each year
+    # Taking all files in each year
     for (j in seq(length(files))) {
       dt_res <- data.table::fread(files[j], skip = 9, data.table = T)
       dt_res <- data.table::fread(files[j], sep = ";", header = T, skip = 8) %>%
@@ -51,7 +51,7 @@ files_by_year <- function(path) {
       gc()
     }
 
-    #Creating csv file by year
+    # Creating csv file by year
     destination <- paste0(save_path,"/",ano[i], ".csv")
     data.table::fwrite(x = dt_res, file = destination, showProgress = T)
   }
@@ -59,3 +59,30 @@ files_by_year <- function(path) {
   return(save_path)
 }
 
+#' @title Preprocessing data.table
+#'
+#' @description This function performs the follow
+#' data.table transformations:
+#' - Replace (,) with (.).
+#' - Changes variable type to numeric type
+#'
+#' @param dt \[\code{data.table}\]\cr
+#' data.table which will be transformed
+#'
+#' @examples
+#'  \dontrun{
+#'
+#' }
+#'
+#' @export
+preprocessing <- function(dt, colnames) {
+
+  # Replace (,) with (.) and changes variable type to numeric type
+  sapply(colnames, function(col){
+    dt[[col]] <<- dt[[col]] %>%
+      stringr::str_replace_all(string = ., pattern = ",", ".") %>%
+      as.numeric(.)
+  })
+
+  return(dt)
+}

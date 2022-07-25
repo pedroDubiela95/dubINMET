@@ -1589,13 +1589,29 @@ interessados, o pacote em questão será denomiando dubINMET.
 </div>
 <div id="analise-exploratória" class="section level1">
 <h1>3. Analise Exploratória</h1>
-<div id="ano-de-2022" class="section level2">
-<h2>Ano de 2022:</h2>
+<div id="anos-de-2021-e-2022" class="section level2">
+<h2>Anos de 2021 e 2022:</h2>
 <div id="carregamento-das-bases-de-dados" class="section level3">
 <h3>Carregamento das Bases de Dados:</h3>
-<p>
-Para o ano de 2022, tem-se disponível somente o primeiro semestre.
-</p>
+<p>Para o ano de 2022, tem-se disponível somente o primeiro
+semestre.</p>
+<pre><code>##           used (Mb) gc trigger (Mb) max used (Mb)
+## Ncells  809003 43.3    1547050 82.7  1198415 64.1
+## Vcells 1919688 14.7    8388608 64.0  2390414 18.3</code></pre>
+</div>
+<div id="exploração-inicial" class="section level3">
+<h3>Exploração inicial:</h3>
+<p>Os anos de 2021 e 2020 possuem as mesmas colunas.</p>
+<p>Busca e correção em anomalias nos dados.</p>
+<p>Foi identificado a existências de valores faltantes. Os dados
+faltantes serão corrgidos com a seguinte metodologia:</p>
+<ul>
+<li>Se a coluna for do tipo numérico, será preenchido com a
+mediana.</li>
+<li>Se a coluna for do tipo categórica,será preenchida com a moda.</li>
+<li>Se uma dada coluna possuir mais de 40% dos dados faltantes, ela será
+removida da análise</li>
+</ul>
 </div>
 </div>
 <div id="ano-de-2021" class="section level2">

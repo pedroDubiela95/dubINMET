@@ -51,17 +51,109 @@ aos anos de 2021 e 2022.
 
 # 3. Analise Exploratória
 
-## Ano de 2022:
+## Anos de 2021 e 2022:
 
 ### Carregamento das Bases de Dados:
-<p>
+
 Para o ano de 2022, tem-se disponível somente o primeiro semestre.
-</p>
 ```{r}
-path   <- "/home/pedrodev/Documents/Base De Dados/INMET/2022/MARINGA (A835)_2022-01-01_2022-07-24.csv"
-dt2022 <- data.table::fread(file = path)
-# gc()
+path1   <- "/home/pedrodev/Documents/Base De Dados/INMET/2022/MARINGA (A835)_2022-01-01_2022-07-24.csv"
+path2   <- "/home/pedrodev/Documents/Base De Dados/INMET/2021/MARINGA (A835)_2021-01-01_2021-06-30.csv"
+path3   <- "/home/pedrodev/Documents/Base De Dados/INMET/2021/MARINGA (A835)_2021-07-01_2021-12-31.csv"
+
+dt2022   <- data.table::fread(file = path1)
+dt2021_1 <- data.table::fread(file = path2)
+dt2021_2 <- data.table::fread(file = path3)
+dt2021   <- rbind(dt2021_1, dt2021_2)
+gc()
 ```
+
+### Exploração inicial:
+
+Os anos de 2021 e 2020 possuem as mesmas colunas.
+```{r}
+
+#all(names(dt2022) == names(dt2021))
+#dt2021 %>% head()
+#summary(dt2021)
+
+#dt2021 %>% head()
+#summary(dt2021)
+
+# Agregando 2021 e 2022
+dt <- rbind(dt2021, dt2022)
+rm(dt2021)
+rm(dt2021_1)
+rm(dt2021_2)
+rm(dt2022)
+```
+
+Busca e correção em anomalias nos dados.
+```{r}
+
+# Colunas que deverão sofrer alterações
+cols <- names(dt[, -c("Hora (UTC)", "Data")])
+
+# Substituir (,) por (.) e transformando as variáveis em tipo numérico
+dt <- preprocessing(dt, colnames = cols) 
+
+# Tranformar a coluna de horas
+dt$`Hora (UTC)` <- dt$`Hora (UTC)`/100
+
+# Existem valores faltantes ??
+#summary(dt)
+```
+
+Foi identificado a existências de valores faltantes. Os dados faltantes serão corrgidos com a seguinte metodologia:
+
+- Se a coluna for do tipo numérico, será preenchido com a mediana. 
+- Se a coluna for do tipo categórica,será preenchida com a moda. 
+- Se uma dada coluna possuir mais de 40% dos dados faltantes, ela será removida da análise 
+```{r}
+
+# Busca por linhas onde tem-se valores NA:
+#dt[!complete.cases(dt), ] %>% head()
+#nrow(dt[!complete.cases(dt), ])
+
+# Nome das colunas com valores faltantes:
+with_na <- colSums(is.na(dt))
+col_40  <- names(with_na[with_na >= 0.4*nrow(dt)])
+
+# Remove
+for (i in length(col_40)) {
+  dt[, col_40[i] := NULL]
+}
+
+#nrow(dt[!complete.cases(dt), ])
+with_na <- colSums(is.na(dt))
+cols    <- names(with_na[with_na > 0])
+df      <- as.data.frame(dt)
+
+# Troca por mediana
+# for (col in cols) {
+#   dt[, .col:= ifelse(is.na(col), median(col, na.rm = T), col)]
+# }
+
+for (col in cols) {
+  df[is.na(df[[col]]),][[col]] <- median(df[,col], na.rm = T)
+}
+
+#df[!complete.cases(df), ]
+#summary(df)
+```
+```{r}
+# library(corrplot)
+# corrplot(cor(data), addCoef.col = T)
+# cor(data$TEY, data$CDP)
+
+#install.packages('corrplot')
+#install.packages('randomForest')
+# importantFeatures <- randomForest::randomForest(class ~ ., data_train)
+# res <- randomForest::importance(importantFeatures)
+# randomForest::varImpPlot(importantFeatures)
+```
+
+
 ## Ano de 2021:
 ```{r}
 
